@@ -1,0 +1,14 @@
+schema-version: 1.0
+
+description: |
+
+builder: ./libtool-builder
+
+var:
+  version: 2.4.6
+
+
+provision:
+  - copy:
+      builder: libtool
+      todir: /

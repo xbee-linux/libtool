@@ -1,0 +1,28 @@
+schema-version: 1.0
+
+type: builder
+
+
+const:
+  srcDir: /usr/src
+  exportDir: /opt/libtool
+
+dependency: m4
+
+
+provision:
+  - url:
+      from: https://ftp.gnu.org/gnu/libtool/libtool-{% version %}.tar.xz
+      todir: "{% srcDir %}"
+
+build:
+  - shell:
+      cmds:
+        - ./configure --prefix=/usr
+        - make
+#        - make check
+        - make install DESTDIR={% exportDir %}
+        - rm -fv {% exportDir %}/usr/lib/libltdl.a
+      directory: "{% srcDir %}/libtool-{% version %}"
+  - export: "{% exportDir %}"
+
