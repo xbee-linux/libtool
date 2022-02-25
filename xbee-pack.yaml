@@ -1,14 +1,27 @@
 schema-version: 1.0
 
-description: |
+type: builder
 
-builder: ./libtool-builder
+description: |
 
 in:
   version: 2.4.6
 
+dependency: m4
 
 provision:
-  - copy:
-      builder: libtool
-      todir: /
+  - url:
+      from: https://ftp.gnu.org/gnu/libtool/libtool-{% version %}.tar.xz
+      todir: "{% xbeeSrc %}"
+
+build:
+  - shell:
+      cmds:
+        - ./configure --prefix=/usr
+        - make
+#        - make check
+        - make install DESTDIR={% xbeeOut %}
+        - rm -fv {% xbeeOut %}/usr/lib/libltdl.a
+      directory: "{% xbeeSrc %}/libtool-{% version %}"
+
+
