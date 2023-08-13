@@ -7,7 +7,7 @@ description: |
 var:
   version: 2.4.6
 
-dependency: m4
+builder: m4
 
 provision:
   - url:
