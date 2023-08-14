@@ -10,9 +10,7 @@ var:
 builder: m4
 
 provision:
-  - url:
-      from: https://ftp.gnu.org/gnu/libtool/libtool-{{ .version }}.tar.xz
-      todir: "{{ .xbee.src }}"
+  - url: https://ftp.gnu.org/gnu/libtool/libtool-{{ .version }}.tar.xz
 
 build:
   - shell:
