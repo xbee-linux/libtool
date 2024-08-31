@@ -5,12 +5,13 @@ type: builder
 description: |
 
 var:
-  version: 2.4.6
+  xbee:
+    version: 2.4.6
 
 builder: m4
 
 provision:
-  - url: https://ftp.gnu.org/gnu/libtool/libtool-{{ .version }}.tar.xz
+  - url: https://ftp.gnu.org/gnu/libtool/libtool-{{ .xbee.version }}.tar.xz
 
 build:
   - shell:
@@ -20,6 +21,6 @@ build:
 #        - make check
         - make install DESTDIR={{ .xbee.out }}
         - rm -fv {{ .xbee.out }}/usr/lib/libltdl.a
-      directory: "{{ .xbee.src }}/libtool-{{ .version }}"
+      directory: "{{ .xbee.src }}/libtool-{{ .xbee.version }}"
 
 
